@@ -5,6 +5,7 @@ from fastapi import (
             UploadFile,
             BackgroundTasks,
             Response,
+            HTTPException,
             )
 from pymongo import MongoClient
 
@@ -26,7 +27,7 @@ def home(file: UploadFile, backgroundtask: BackgroundTasks):
     if file.content_type == "text/csv":
         backgroundtask.add_task(csv_to_mongo, file)
         return Response(status_code=202)
-    return Response(status_code=400, detail="we can only support csv files")
+    raise HTTPException(status_code=400, detail="we can only support csv files")
 
 
 @app.get("/")
