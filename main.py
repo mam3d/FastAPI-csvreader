@@ -5,8 +5,6 @@ from fastapi import (
             UploadFile,
             BackgroundTasks,
             Response,
-            encoders,
-            responses,
             )
 from pymongo import MongoClient
 
