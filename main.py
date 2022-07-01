@@ -26,7 +26,7 @@ def home(file: UploadFile, backgroundtask: BackgroundTasks):
     if file.content_type == "text/csv":
         backgroundtask.add_task(csv_to_mongo, file)
         return Response(status_code=202)
-    raise Response(status_code=400, detail="we can only support csv files")
+    return Response(status_code=400, detail="we can only support csv files")
 
 
 @app.get("/")
